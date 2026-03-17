@@ -9,11 +9,6 @@ dist/
 *.egg-info/
 .eggs/
 
-# Virtual environments
-venv/
-env/
-.venv/
-ENV/
 
 # Jupyter
 .ipynb_checkpoints/
@@ -28,8 +23,17 @@ ENV/
 # ML models & artefacts
 models/*.pkl
 models/*.h5
+models/*.json
 models/plots/
 *.ckpt
+*.pkl
+
+# Virtual env (all names)
+venv*/
+Venv/
+.venv/
+env/
+ENV/
 
 # Data
 dataset/processed.csv

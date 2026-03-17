@@ -30,6 +30,10 @@ DESCRIPTORS = [
     "FractionCSP3", "RingCount", "HeavyAtomCount",
 ]
 
+# All kinase targets present in the tox dataset (uppercase)
+KINASE_TARGETS = ["ABL", "ALK", "EGFR", "FGFR", "JAK", "KIT", "MET",
+                  "PDGFR", "RET", "SRC", "VEGFR", "UNKNOWN"]
+
 # ── Data processing ────────────────────────────────────────────────────────────
 TEST_SIZE = 0.15
 VALIDATION_SIZE = 0.15
@@ -41,32 +45,34 @@ SMOTE_K_NEIGHBORS = 5
 
 # ── XGBoost hyperparameters ────────────────────────────────────────────────────
 XGBOOST_PARAMS = {
-    "n_estimators": 500,
-    "max_depth": 7,
-    "learning_rate": 0.05,
-    "subsample": 0.8,
-    "colsample_bytree": 0.8,
+    "n_estimators": 600,
+    "max_depth": 8,
+    "learning_rate": 0.04,
+    "subsample": 0.85,
+    "colsample_bytree": 0.75,
+    "colsample_bylevel": 0.75,
     "min_child_weight": 3,
-    "gamma": 0.1,
-    "reg_alpha": 0.1,
-    "reg_lambda": 1.0,
+    "gamma": 0.05,
+    "reg_alpha": 0.05,
+    "reg_lambda": 1.5,
     "scale_pos_weight": 1,
     "random_state": RANDOM_STATE,
     "verbosity": 0,
     "eval_metric": "logloss",
+    "n_jobs": -1,
 }
 
 # ── LightGBM hyperparameters ───────────────────────────────────────────────────
 LIGHTGBM_PARAMS = {
-    "n_estimators": 500,
-    "max_depth": 7,
-    "learning_rate": 0.05,
-    "num_leaves": 63,
-    "subsample": 0.8,
-    "colsample_bytree": 0.8,
-    "min_child_samples": 20,
-    "reg_alpha": 0.1,
-    "reg_lambda": 1.0,
+    "n_estimators": 600,
+    "max_depth": 8,
+    "learning_rate": 0.04,
+    "num_leaves": 127,
+    "subsample": 0.85,
+    "colsample_bytree": 0.75,
+    "min_child_samples": 15,
+    "reg_alpha": 0.05,
+    "reg_lambda": 1.5,
     "random_state": RANDOM_STATE,
     "verbosity": -1,
     "n_jobs": -1,
@@ -74,11 +80,15 @@ LIGHTGBM_PARAMS = {
 
 # ── CatBoost hyperparameters ───────────────────────────────────────────────────
 CATBOOST_PARAMS = {
-    "iterations": 500,
-    "depth": 7,
-    "learning_rate": 0.05,
+    "iterations": 600,
+    "depth": 8,
+    "learning_rate": 0.04,
+    "l2_leaf_reg": 3.0,
+    "bagging_temperature": 0.5,
+    "random_strength": 0.5,
     "random_seed": RANDOM_STATE,
     "verbose": 0,
+    "thread_count": -1,
 }
 
 # ── Random Forest hyperparameters (baseline) ───────────────────────────────────
